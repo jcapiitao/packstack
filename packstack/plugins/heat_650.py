@@ -170,7 +170,6 @@ def create_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "heat"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['8004']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_HEAT_RULES'] = fw_details
@@ -182,7 +181,6 @@ def create_cfn_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "heat cfn"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['8000']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_HEAT_CFN_RULES'] = fw_details

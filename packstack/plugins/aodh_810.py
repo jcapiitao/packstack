@@ -111,7 +111,6 @@ def create_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "aodh-api"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['8042']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_AODH_RULES'] = fw_details

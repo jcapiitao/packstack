@@ -5,13 +5,12 @@
 define packstack::firewall (
   $host,
   $service_name,
-  $chain = 'INPUT',
   $ports = undef,
   $proto = 'tcp'
 ) {
   $ip_version = lookup('CONFIG_IP_VERSION')
 
-  $provider = $ip_version ? {
+  $protocol = $ip_version ? {
     'ipv6'  => 'ip6tables',
     default => 'iptables',
     # TO-DO(mmagr): Add IPv6 support when hostnames are used
@@ -25,28 +24,21 @@ define packstack::firewall (
     default => $host,
   }
 
-  $heading = $chain ? {
-    'OUTPUT' => 'outgoing',
-    default => 'incoming',
-  }
-
   if $ports == undef {
-    firewall { "001 ${service_name} ${heading} ${title}":
-      chain    => $chain,
+    firewall { "001 ${service_name} ${title}":
       proto    => $proto,
-      action   => 'accept',
+      jump     => 'accept',
       source   => $source,
-      provider => $provider,
+      protocol => $protocol,
     }
   }
   else {
-    firewall { "001 ${service_name} ${heading} ${title}":
-      chain    => $chain,
+    firewall { "001 ${service_name} ${title}":
       proto    => $proto,
       dport    => $ports,
-      action   => 'accept',
+      jump     => 'accept',
       source   => $source,
-      provider => $provider,
+      protocol => $protocol,
     }
   }
 }

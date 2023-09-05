@@ -198,7 +198,6 @@ def _create_redis_firewall_rules(hosts, port):
         fw_details.setdefault(key, {})
         fw_details[key]['host'] = "%s" % host
         fw_details[key]['service_name'] = "redis service"
-        fw_details[key]['chain'] = "INPUT"
         fw_details[key]['ports'] = port
         fw_details[key]['proto'] = "tcp"
     return fw_details

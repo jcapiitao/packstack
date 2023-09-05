@@ -281,7 +281,6 @@ def create_proxy_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "swift proxy"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['8080']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_SWIFT_PROXY_RULES'] = fw_details
@@ -320,7 +319,6 @@ def create_storage_manifest(config, messages):
         fw_details.setdefault(key, {})
         fw_details[key]['host'] = "%s" % host
         fw_details[key]['service_name'] = "swift storage and rsync"
-        fw_details[key]['chain'] = "INPUT"
         fw_details[key]['ports'] = ['6000', '6001', '6002', '873']
         fw_details[key]['proto'] = "tcp"
     config['FIREWALL_SWIFT_STORAGE_RULES'] = fw_details

@@ -691,7 +691,6 @@ def tunnel_fw_details(config, host, src, fw_details):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "%s" % src
     fw_details[key]['service_name'] = "neutron tunnel port"
-    fw_details[key]['chain'] = "INPUT"
     if use_openvswitch_vxlan(config):
         fw_details[key]['proto'] = 'udp'
         tun_port = ("%s" % config['CONFIG_NEUTRON_OVS_VXLAN_UDP_PORT'])
@@ -759,7 +758,6 @@ def create_manifests(config, messages):
             fw_details.setdefault(key, {})
             fw_details[key]['host'] = "ALL"
             fw_details[key]['service_name'] = "neutron server"
-            fw_details[key]['chain'] = "INPUT"
             fw_details[key]['ports'] = ['9696']
             fw_details[key]['proto'] = "tcp"
             if use_ml2_with_ovn(config):
@@ -767,14 +765,12 @@ def create_manifests(config, messages):
                 fw_details.setdefault(key, {})
                 fw_details[key]['host'] = "ALL"
                 fw_details[key]['service_name'] = "ovn northd"
-                fw_details[key]['chain'] = "INPUT"
                 fw_details[key]['ports'] = ['6641']
                 fw_details[key]['proto'] = "tcp"
                 key = "ovn_southd_%s" % host
                 fw_details.setdefault(key, {})
                 fw_details[key]['host'] = "ALL"
                 fw_details[key]['service_name'] = "ovn southd"
-                fw_details[key]['chain'] = "INPUT"
                 fw_details[key]['ports'] = ['6642']
                 fw_details[key]['proto'] = "tcp"
             config['FIREWALL_NEUTRON_SERVER_RULES'] = fw_details
@@ -860,7 +856,6 @@ def create_dhcp_manifests(config, messages):
         fw_details.setdefault(key, {})
         fw_details[key]['host'] = "ALL"
         fw_details[key]['service_name'] = "neutron dhcp in"
-        fw_details[key]['chain'] = "INPUT"
         fw_details[key]['ports'] = ['67']
         fw_details[key]['proto'] = "udp"
         config['FIREWALL_NEUTRON_DHCPIN_RULES'] = fw_details
@@ -871,7 +866,6 @@ def create_dhcp_manifests(config, messages):
         fw_details.setdefault(key, {})
         fw_details[key]['host'] = "ALL"
         fw_details[key]['service_name'] = "neutron dhcp out"
-        fw_details[key]['chain'] = "OUTPUT"
         fw_details[key]['ports'] = ['68']
         fw_details[key]['proto'] = "udp"
         config['FIREWALL_NEUTRON_DHCPOUT_RULES'] = fw_details

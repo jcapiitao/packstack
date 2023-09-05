@@ -111,7 +111,6 @@ def create_manifest(config, messages):
         fw_details.setdefault(key, {})
         fw_details[key]['host'] = "%s" % host
         fw_details[key]['service_name'] = "mariadb"
-        fw_details[key]['chain'] = "INPUT"
         fw_details[key]['ports'] = ['3306']
         fw_details[key]['proto'] = "tcp"
     config['FIREWALL_MARIADB_RULES'] = fw_details

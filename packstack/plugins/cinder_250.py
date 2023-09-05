@@ -728,7 +728,6 @@ def create_manifest(config, messages):
             fw_details[key]['host'] = "ALL"
 
         fw_details[key]['service_name'] = "cinder"
-        fw_details[key]['chain'] = "INPUT"
         fw_details[key]['ports'] = ['3260']
         fw_details[key]['proto'] = "tcp"
 
@@ -740,7 +739,6 @@ def create_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "cinder-api"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['8776']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_CINDER_API_RULES'] = fw_details

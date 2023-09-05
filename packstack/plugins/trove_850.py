@@ -152,7 +152,6 @@ def create_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "trove api"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['8779']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_TROVE_API_RULES'] = fw_details

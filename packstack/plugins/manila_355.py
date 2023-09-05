@@ -630,7 +630,6 @@ def create_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "manila-api"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['8786']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_MANILA_API_RULES'] = fw_details

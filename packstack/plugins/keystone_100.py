@@ -681,7 +681,6 @@ def create_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "keystone"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['5000']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_KEYSTONE_RULES'] = fw_details

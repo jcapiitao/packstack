@@ -314,7 +314,6 @@ def create_api_manifest(config, messages):
     fw_details.setdefault(key, {})
     fw_details[key]['host'] = "ALL"
     fw_details[key]['service_name'] = "nova api"
-    fw_details[key]['chain'] = "INPUT"
     fw_details[key]['ports'] = ['8773', '8774', '8775', '8778']
     fw_details[key]['proto'] = "tcp"
     config['FIREWALL_NOVA_API_RULES'] = fw_details
@@ -381,7 +380,6 @@ def create_compute_manifest(config, messages):
             fw_details.setdefault(key, {})
             fw_details[key]['host'] = "%s" % c_host
             fw_details[key]['service_name'] = "nova qemu migration"
-            fw_details[key]['chain'] = "INPUT"
             fw_details[key]['ports'] = ['16509', '49152-49215']
             fw_details[key]['proto'] = "tcp"
 
@@ -405,7 +403,6 @@ def create_compute_manifest(config, messages):
         fw_details.setdefault(key, {})
         fw_details[key]['host'] = "%s" % config['CONFIG_CONTROLLER_HOST']
         fw_details[key]['service_name'] = "nova compute"
-        fw_details[key]['chain'] = "INPUT"
         fw_details[key]['ports'] = ['5900-5999']
         fw_details[key]['proto'] = "tcp"
         config['FIREWALL_NOVA_COMPUTE_RULES'] = fw_details
